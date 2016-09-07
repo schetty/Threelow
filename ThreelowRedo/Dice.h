@@ -12,7 +12,10 @@
 
 @property (nonatomic, strong) NSNumber* currentValue;
 @property (nonatomic, strong) NSArray* diceArray;
+@property (nonatomic, strong) NSString* symbol;
 
 - (NSNumber*) randomizeValue;
+
+- (instancetype) initWithValue:(NSNumber*)valueAmt andSymbol:(NSString*)symbol;
 
 @end

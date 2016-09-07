@@ -10,6 +10,16 @@
 
 @implementation Dice
 
+- (instancetype)initWithValue:(NSNumber *)valueAmt andSymbol:(NSString *)symbol
+{
+    self = [super init];
+    if (self) {
+        _currentValue = valueAmt;
+        _symbol = symbol;
+    }
+    return self;
+}
+
 - (NSNumber*) randomizeValue {
    NSUInteger r = arc4random_uniform(6) + 1;
     NSNumber *myNum = @(r);
