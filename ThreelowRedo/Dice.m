@@ -7,14 +7,15 @@
 //
 
 #import "Dice.h"
+//#import "GameController.h"
 
 @implementation Dice
 
-- (instancetype)initWithValue:(NSNumber *)valueAmt andSymbol:(NSString *)symbol
+- (instancetype)initWithValue:(NSNumber *)value andSymbol:(NSString *)symbol
 {
     self = [super init];
     if (self) {
-        _currentValue = valueAmt;
+        _value = value;
         _symbol = symbol;
     }
     return self;
@@ -26,6 +27,7 @@
     NSLog(@"%@", myNum);
     return myNum;
 }
+
 
 
 @end

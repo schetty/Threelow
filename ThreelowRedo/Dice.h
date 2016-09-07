@@ -10,12 +10,12 @@
 
 @interface Dice : NSObject
 
-@property (nonatomic, strong) NSNumber* currentValue;
-@property (nonatomic, strong) NSArray* diceArray;
+@property (nonatomic, strong) NSNumber* value;
 @property (nonatomic, strong) NSString* symbol;
+
 
 - (NSNumber*) randomizeValue;
 
-- (instancetype) initWithValue:(NSNumber*)valueAmt andSymbol:(NSString*)symbol;
+- (instancetype) initWithValue:(NSNumber*)value andSymbol:(NSString*)symbol;
 
 @end

@@ -10,4 +10,11 @@
 
 @interface GameController : NSObject
 
+@property (nonatomic, strong) NSMutableSet* heldDice;
+@property (nonatomic, strong) NSSet* diceSet;
+
+- (NSString *)inputForPrompt:(NSString *)promptString;
+
+- (NSNumber*) roll;
+
 @end
