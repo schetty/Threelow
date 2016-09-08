@@ -11,22 +11,69 @@
 
 @implementation GameController
 
-//return type | method name  | parameter type | parameter name
 
-- (NSString *)inputForPrompt:(NSString *)promptString {
-    char inputChars [255];
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        Dice *d1 = [Dice new];
+        Dice *d2 = [Dice new];
+        Dice *d3 = [Dice new];
+        Dice *d4 = [Dice new];
+        Dice *d5 = [Dice new];
+        
     
-    NSLog(@"%@", promptString);
-    fgets(inputChars, 255, stdin);
-    NSString *str = [NSString stringWithFormat:@"%s", inputChars];
-    str = [str stringByReplacingOccurrencesOfString:(@"\n") withString:(@"")];
-    
-    return str;
+        
+//        self.dice = [NSMutableArray arrayWithObjects:d1,d2,d3,d4,d5, nil];
+        self.dice = [@[d1, d2, d3, d4, d5] mutableCopy];
+ 
+        self.heldDice = [NSMutableSet set];
+        [self printRolledDice];
+    }
+    return self;
 }
 
-- (NSNumber *) rollDice:(Dice*)d {
-    NSNumber* value4D = [d randomizeValue];
-    return value4D;
+
+
+- (void) rollDice{
+    for (Dice *aDie in self.dice) {
+        
+        if (![_heldDice containsObject:aDie]) {
+            
+            [aDie randomizeValue];
+            NSLog(@" %i", aDie.value);
+        }
+    }
+    
+}
+
+- (void) printRolledDice {
+    //        for (Dice *aDie in self.dice) {
+    //
+    //            if (![_heldDice containsObject:aDie]) {
+    //                NSLog(@" %i", aDie.value);
+    //            }
+    //        }
+}
+
+
+- (void)holdDie:(NSInteger)index {
+    
+    Dice * aDie = self.dice[index];
+    if ([self.heldDice containsObject: aDie]) {
+        [self.heldDice removeObject: aDie];
+    }
+    else {
+        [self.heldDice addObject:aDie];
+        
+    }
+    
+}
+
+- (void)unholdAll {
+    
+    [_heldDice removeAllObjects];    
+    
 }
 
 @end

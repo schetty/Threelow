@@ -9,56 +9,96 @@
 #import <Foundation/Foundation.h>
 #import "Dice.h"
 #import "GameController.h"
+#import "ImputController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        GameController *gameController = [GameController new];
-        Dice *d1 = [Dice new];
-        Dice *d2 = [Dice new];
-        Dice *d3 = [Dice new];
-        Dice *d4 = [Dice new];
-        Dice *d5 = [Dice new];
+        ImputController *imputController = [ImputController new];
         
-        NSNumber *dValue1 = [d1 randomizeValue];
-        NSNumber *dValue2 = [d2 randomizeValue];
-        NSNumber *dValue3 = [d3 randomizeValue];
-        NSNumber *dValue4 = [d4 randomizeValue];
-        NSNumber *dValue5 = [d5 randomizeValue];
-
-
-
-//
-//        NSString *diceSymbol1 = [NSString stringWithUTF8String:"⚀"];
-//        NSString *diceSymbol2 = [NSString stringWithUTF8String:"⚁"];
-//        NSString *diceSymbol3 = [NSString stringWithUTF8String:"⚂"];
-//        NSString *diceSymbol4 = [NSString stringWithUTF8String:"⚃"];
-//        NSString *diceSymbol5 = [NSString stringWithUTF8String:"⚄"];
-//        NSString *diceSymbol6 = [NSString stringWithUTF8String:"⚅"];
+        BOOL gameRunning = NO;
         
-        NSArray *diceArray = [[NSArray alloc] initWithObjects:d1, d2, d3, d4, d5, nil];
+        //        NSString *diceSymbol1 = [NSString stringWithUTF8String:"⚀"];
+        //        NSString *diceSymbol2 = [NSString stringWithUTF8String:"⚁"];
+        //        NSString *diceSymbol3 = [NSString stringWithUTF8String:"⚂"];
+        //        NSString *diceSymbol4 = [NSString stringWithUTF8String:"⚃"];
+        //        NSString *diceSymbol5 = [NSString stringWithUTF8String:"⚄"];
+        //        NSString *diceSymbol6 = [NSString stringWithUTF8String:"⚅"];
         
-        NSString* start = [gameController inputForPrompt:@"Welcome to ThreeLow \n type 'roll' to begin"];
+        
+        
+        NSString* start = [imputController inputForPrompt:@"Welcome to ThreeLow \n type 'roll' to begin"];
         
         if ([start isEqualToString:@"roll"]) {
             
+            GameController *gameController = [GameController new];
+            
+            [gameController rollDice];
+            [gameController printRolledDice];
+            
+            gameRunning = YES;
+            
             do {
                 
+                //do something within this loop, while the game is running
+                // the do soemthing is prompt for an action from the user, and then run the action
                 
-            } while ();
+                //                NSLog(@"this is a new roll");
+                //                [gameController rollDice];
+                
+                NSString* input = [imputController inputForPrompt:@"What is your next action?"];
+                
+                //if input = roll, roll dice
+                if( [input isEqualToString:@"roll"]){
+                    
+                    
+                    [gameController rollDice];
+                    
+                    NSLog(@"Machine detected user typed roll");
+                }
+                //
+                
+                //if input = hold, hold dice
+                else if( [input isEqualToString:@"hold"]){
+                    NSString* input = [imputController inputForPrompt:@"Type the index number of the dice to hold"];
+                    
+//                    Dice *designatedDie = [gameController.dice objectAtIndex:index];
+//                    if (input isEqualToString:@"%@", designatedDie)
+                    {
+                    
+                        [gameController holdDie];
+                    }
+                    
+        
+                    
+                    
+                    NSLog(@"Machine detected user typed hold");
+                }
+                
+                
+                //reset
+                     else if( [input isEqualToString:@"unhold all"]){
+                         [gameController unholdAll];
+                         NSLog(@"all dice unheld");
+                     }
+                
+                //quit game
+                
+                else if ([input isEqualToString:@"quit"]){
+                    
+                    
+                    NSLog(@"Machine detected user typed quit");
+                    gameRunning = NO;
+                }
+                
+                
+            } while (gameRunning);
+            
+            NSLog(@"Game Terminated");
+            
             
         }
         
-        
-        for (NSString *symbol in diceArray) {
-            
-            
-        }
-        
-        else {
-            NSLog(@"goodbye");
-            exit (0);
-        }
     }
     
     return 0;

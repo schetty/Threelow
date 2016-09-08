@@ -10,12 +10,13 @@
 
 @interface Dice : NSObject
 
-@property (nonatomic, strong) NSNumber* value;
+@property (nonatomic) int value;
 @property (nonatomic, strong) NSString* symbol;
 
 
-- (NSNumber*) randomizeValue;
+- (void) randomizeValue;
 
-- (instancetype) initWithValue:(NSNumber*)value andSymbol:(NSString*)symbol;
+- (instancetype) initWithValue:(int)value andSymbol:(NSString*)symbol;
+-(instancetype) initWithX;
 
 @end

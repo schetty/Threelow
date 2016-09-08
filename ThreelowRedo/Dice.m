@@ -11,21 +11,27 @@
 
 @implementation Dice
 
-- (instancetype)initWithValue:(NSNumber *)value andSymbol:(NSString *)symbol
-{
+//- (instancetype)initWithValue:(int)value andSymbol:(NSString *)symbol
+//{
+//    self = [super init];
+//    if (self) {
+//        _value = arc4random_uniform(6) + 1;
+//    }
+//    return self;
+//}
+
+- ( instancetype) init {
     self = [super init];
     if (self) {
-        _value = value;
-        _symbol = symbol;
+        _value = arc4random_uniform(6) + 1;
+        
     }
     return self;
 }
 
-- (NSNumber*) randomizeValue {
-   NSUInteger r = arc4random_uniform(6) + 1;
-    NSNumber *myNum = @(r);
-    NSLog(@"%@", myNum);
-    return myNum;
+- (void) randomizeValue {
+   self.value = arc4random_uniform(6) + 1;
+
 }
 
 
