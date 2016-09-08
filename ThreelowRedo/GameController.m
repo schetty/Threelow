@@ -41,7 +41,7 @@
         if (![_heldDice containsObject:aDie]) {
             
             [aDie randomizeValue];
-            NSLog(@" %i", aDie.value);
+            NSLog(@" %@", aDie.value);
         }
     }
     
@@ -73,6 +73,17 @@
 - (void)unholdAll {
     
     [_heldDice removeAllObjects];    
+    
+}
+
+-(int)calculateScore {
+    int score = 0;
+    
+    for (Dice *die in self.heldDice)
+        if (die.randomValue != 3){
+            score = score + die.randomValue;
+        }
+    return score;
     
 }
 

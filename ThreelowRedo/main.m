@@ -62,19 +62,25 @@ int main(int argc, const char * argv[]) {
                 else if( [input isEqualToString:@"hold"]){
                     NSString* input = [imputController inputForPrompt:@"Type the index number of the dice to hold"];
                     
-//                    Dice *designatedDie = [gameController.dice objectAtIndex:index];
-//                    if (input isEqualToString:@"%@", designatedDie)
-                    {
+                    //Dice *designatedDie = [gameController.dice objectAtIndex:index];
                     
-                        [gameController holdDie];
-                    }
+                    //convert input from NSString to NSinteger
                     
-        
+                    NSInteger designatedDie = [input integerValue];
+                
+                    [gameController holdDie:designatedDie];
+
                     
                     
                     NSLog(@"Machine detected user typed hold");
                 }
                 
+                //see score
+                
+                else if ( [input isEqualToString:@"score"]){
+                    [gameController calculateScore];
+                    NSLog(@"Your score is %i", gameController.score);
+                }
                 
                 //reset
                      else if( [input isEqualToString:@"unhold all"]){

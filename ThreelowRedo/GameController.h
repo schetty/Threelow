@@ -13,11 +13,13 @@
 @property (nonatomic, strong) NSMutableSet* heldDice;
 @property (nonatomic, strong) NSMutableArray* dice;
 @property (nonatomic) int value;
+@property (nonatomic) int score;
 
 
 - (void) rollDice;
 - (void) printRolledDice;
-- (void) holdDie;
+- (void) holdDie:(NSInteger)index;
 - (void)unholdAll;
+- (int) calculateScore;
 
 @end

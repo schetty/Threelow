@@ -10,7 +10,9 @@
 
 @interface Dice : NSObject
 
-@property (nonatomic) int value;
+@property (nonatomic) NSString * value;
+@property (nonatomic) int randomValue;
+
 @property (nonatomic, strong) NSString* symbol;
 
 

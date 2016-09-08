@@ -20,18 +20,43 @@
 //    return self;
 //}
 
-- ( instancetype) init {
+- (instancetype) init {
     self = [super init];
     if (self) {
-        _value = arc4random_uniform(6) + 1;
+        
+        
+    _randomValue = arc4random_uniform(6) + 1;
+
+        [self randomizeValue];
+      
         
     }
     return self;
 }
 
 - (void) randomizeValue {
-   self.value = arc4random_uniform(6) + 1;
-
+   int randomValue = arc4random_uniform(6) + 1;
+    if (randomValue == 1) {
+    self.value = @"\u2680";
+}
+    else if (randomValue ==2) {
+        self.value = @"\u2681";
+    }
+    
+    else if (randomValue == 3) {
+        self.value = @"\u2682";
+    }
+    
+    else if (randomValue == 4) {
+        self.value = @"\u2683";
+    }
+    else if (randomValue == 5) {
+        self.value = @"\u2684";
+    }
+    
+    else if (randomValue == 6) {
+        self.value = @"\u2685";
+    }
 }
 
 
